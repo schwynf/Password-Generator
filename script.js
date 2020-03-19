@@ -5,73 +5,143 @@ var specialCharArray = [" ", "!", "\”", "#", "$", "%", "&", "\’", "(", ")", 
 console.log(specialCharArray[2]);
 
 var userAnswerLength = prompt("how many characters do you want for password? minimun:8 & maximum:128");
+// prompt is a string so I have to parseInt to get data type number
 var userAnswerParse = parseInt(userAnswerLength);
 var userAnswerParseType = typeof userAnswerParse;
+
+// Checking if input is valid
 if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse < 129) {
     var userAnsewerLowerCase = confirm("Include Lower Case Letters?");
     var userAnswerUpperCase = confirm("Include Upper Case Letters?");
     var userAnsewerNumber = confirm("Include Numbers?");
     var userAnswerSpecialChar = confirm("Include special characters?");
-    if (userAnsewerLowerCase === true && userAnswerUpperCase === true && userAnsewerNumber === true && userAnswerSpecialChar === true) {
-        var randomNumber;
-        var randomLowerCharArray = [];
-        var randomNumericArray = [];
-        var randomSpecialCharArray = [];
-        for (i = 0; i < userAnswerParse; i++) {
-            randomNumber = Math.floor(Math.random() * lowerCharArray.length);
-            randomLowerCharArray[i] = randomNumber;
-            randomNumber = Math.floor(Math.random() * numericArray.length);
-            randomNumericArray[i] = randomNumber;
-            randomNumber = Math.floor(Math.random() * specialCharArray.length);
-            randomSpecialCharArray[i] = randomNumber;
-        }
-        var checkModule = Math.floor(userAnswerParse / 4);
-        var text = "";
-        for (x = 0; x < checkModule; x++) {
-            text = text + lowerCharArray[randomLowerCharArray[x]] + specialCharArray[randomSpecialCharArray[x]] + numericArray[randomNumericArray[x]] + lowerCharArray[randomLowerCharArray[x]].toUpperCase();
-        }
-        var mod = userAnswerParse % 4;
-        if (mod > 2) {
-            text += lowerCharArray[randomLowerCharArray[x]] + specialCharArray[randomSpecialCharArray[x]] + numericArray[randomNumericArray[x]];
-        } else if (mod > 1) {
-            text += lowerCharArray[randomLowerCharArray[x]] + specialCharArray[randomSpecialCharArray[x]];
-        } else if (mod > 0) {
-            text += lowerCharArray[randomLowerCharArray[x]];
-        } else {
-            document.getElementById("demo").innerHTML = text;
-        }
 
-        document.getElementById("demo").innerHTML = text;
-        document.getElementById("d").innerHTML = text.length;
-    }else if (userAnsewerLowerCase === true && userAnswerUpperCase === true && userAnsewerNumber === true) {
-        var randomNumber;
-        var randomLowerCharArray = [];
-        var randomNumericArray = [];
-        var randomSpecialCharArray = [];
-        for (i = 0; i < userAnswerParse; i++) {
+    var randomNumber;
+    var randomLowerCharArray = [];
+    var randomNumericArray = [];
+    var randomSpecialCharArray = [];
+    var newArray = [];
+    var piggyBackArray = [];
+    var x;
+    // setting up the newArray length to be equal to userAnswerParse. The while loop will stop when newArray.length is equal to userAnswerParse.
+    while (newArray.length < userAnswerParse) {
+        if (userAnsewerLowerCase === true && newArray.length < userAnswerParse) {
             randomNumber = Math.floor(Math.random() * lowerCharArray.length);
-            randomLowerCharArray[i] = randomNumber;
+            x = lowerCharArray[randomNumber]
+            newArray.push(x);
+            randomNumber = Math.floor(Math.random() * 1000);
+            piggyBackArray.push(randomNumber);
+        }
+        if (userAnswerUpperCase === true && newArray.length < userAnswerParse) {
+            randomNumber = Math.floor(Math.random() * lowerCharArray.length);
+            x = lowerCharArray[randomNumber].toUpperCase();
+            newArray.push(x);
+            randomNumber = Math.floor(Math.random() * 1000);
+            piggyBackArray.push(randomNumber);
+        }
+        if (userAnsewerNumber === true && newArray.length < userAnswerParse) {
             randomNumber = Math.floor(Math.random() * numericArray.length);
-            randomNumericArray[i] = randomNumber;
+            x = numericArray[randomNumber];
+            newArray.push(x);
+            randomNumber = Math.floor(Math.random() * 1000);
+            piggyBackArray.push(randomNumber);
+        }
+        if (userAnswerSpecialChar === true && newArray.length < userAnswerParse) {
             randomNumber = Math.floor(Math.random() * specialCharArray.length);
-            randomSpecialCharArray[i] = randomNumber;
+            x = specialCharArray[randomNumber];
+            newArray.push(x);
+            randomNumber = Math.floor(Math.random() * 1000);
+            piggyBackArray.push(randomNumber);
         }
-        var checkModule = Math.floor(userAnswerParse / 3);
-        var text = "";
-        for (x = 0; x < checkModule; x++) {
-            text = text + lowerCharArray[randomLowerCharArray[x]] + numericArray[randomNumericArray[x]] + lowerCharArray[randomLowerCharArray[x]].toUpperCase();
-        }
-        var mod = userAnswerParse % 3;
-        if (mod > 1) {
-            text += lowerCharArray[randomLowerCharArray[x]] + numericArray[randomNumericArray[x]];
-        } else if (mod > 0) {
-            text += lowerCharArray[randomLowerCharArray[x]];
-        } else {
-            document.getElementById("demo").innerHTML = text;
-        }
-        document.getElementById("demo").innerHTML = text;
-        document.getElementById("d").innerHTML = text.length;
-    }else{
-        document.getElementById("demo").innerHTML = "hi";
     }
-} 
+    console.log(newArray);
+    console.log(piggyBackArray);
+
+    // Using bubble sort algo to randomize newArray
+    var x = piggyBackArray;
+    var n = piggyBackArray.length;
+    var swap = true;
+    while (swap) {
+        swap = false;
+        for (var i = 0; i < n; i++) {
+            if (x[i] > x[i + 1]) {
+                var temp = x[i];
+                x[i] = x[i + 1];
+                x[i + 1] = temp;
+                var temp1 = newArray[i];
+                newArray[i] = newArray[i + 1];
+                newArray[i + 1] = temp1;
+                swapp = true;
+            }
+        }
+        n--;
+    }
+
+    // uncomment 1-3 comments below to run check cases. Make sure to press cancel when prompted depending on which case you choose!
+    // newArray[0] = "!";
+    // newArray[1] = "1";
+    // newArray[2] = "U"
+    // newArray[3] = "t"
+    var text = "";
+    for (i = 0; i < newArray.length; i++) {
+        text += newArray[i];
+    }
+    console.log(text);
+    var check = "no pair";
+    var checkMatch = "";
+    var a;
+
+    // check for lower case letter
+    if (userAnsewerLowerCase === false) {
+        a = 0;
+        while (a < lowerCharArray.length) {
+            for (i = 0; i < text.length; i++)
+                if (lowerCharArray[a] === text.charAt(i)) {
+                    check = "match";
+                    checkMatch += text.charAt(i);
+                }
+            a++;
+        }
+    }
+
+    // check for upper case letter
+    if (userAnswerUpperCase === false) {
+        a = 0;
+        while (a < lowerCharArray.length) {
+            for (i = 0; i < text.length; i++)
+                if (lowerCharArray[a].toUpperCase() === text.charAt(i)) {
+                    check = "match";
+                    checkMatch += text.charAt(i);
+                }
+            a++;
+        }
+    }
+
+    // check for number
+    if (userAnsewerNumber === false) {
+        a = 0;
+        while (a < numericArray.length) {
+            for (i = 0; i < text.length; i++)
+                if (numericArray[a] === text.charAt(i)) {
+                    check = "match";
+                    checkMatch += text.charAt(i);
+                }
+            a++;
+        }
+    }
+
+    // check for special character
+    if (userAnswerSpecialChar === false) {
+        a = 0;
+        while (a < specialCharArray.length) {
+            for (i = 0; i < text.length; i++)
+                if (specialCharArray[a] === text.charAt(i)) {
+                    check = "match";
+                    checkMatch += text.charAt(i);
+                }
+            a++;
+        }
+    }
+    console.log(check);
+    console.log(checkMatch);
+}
