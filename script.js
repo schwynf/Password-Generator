@@ -2,8 +2,9 @@
 var lowerCharArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 var numericArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var specialCharArray = [" ", "!", "\”", "#", "$", "%", "&", "\’", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"];
-console.log(lowerCharArray[0].toUpperCase());
-console.log(specialCharArray[2]);
+// Quick console check on the arrays
+// console.log(lowerCharArray[0].toUpperCase());
+// console.log(specialCharArray[2]);
 
 var userAnswerLength = prompt("how many characters do you want for password? minimun:8 & maximum:128");
 // prompt is a string so I have to parseInt to get data type "number"
@@ -16,6 +17,11 @@ if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse <
     var userAnswerUpperCase = confirm("Include Upper Case Letters?");
     var userAnsewerNumber = confirm("Include Numbers?");
     var userAnswerSpecialChar = confirm("Include special characters?");
+    // Useful info for console
+    console.log("LowerCase: " + userAnsewerLowerCase);
+    console.log("UpperCase: " + userAnswerUpperCase);
+    console.log("Number: " + userAnsewerNumber);
+    console.log("Special Char: " + userAnswerSpecialChar);
 
     var randomNumber;
     var randomLowerCharArray = [];
@@ -25,7 +31,7 @@ if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse <
     // piggybackArray used to randomize order of newArray
     var piggyBackArray = [];
     var x;
-    // setting up the newArray length to be equal to userAnswerParse. The while loop will stop when newArray.length is equal to userAnswerParse.
+    // setting up the newArray.length to be equal to userAnswerParse. The while loop will stop when newArray.length === userAnswerParse.
     while (newArray.length < userAnswerParse) {
         if (userAnsewerLowerCase === true && newArray.length < userAnswerParse) {
             randomNumber = Math.floor(Math.random() * lowerCharArray.length);
@@ -58,20 +64,20 @@ if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse <
     }
     // piggyBackArray prior to bubble sort--check console
     var rand = [];
-    for(i = 0; i < piggyBackArray.length; i++){
+    for (i = 0; i < piggyBackArray.length; i++) {
         rand[i] = piggyBackArray[i];
     }
     console.log(rand);
     // newArray prior to bubble sort--check console
     var o = [];
-    for(i = 0; i < newArray.length; i++){
+    for (i = 0; i < newArray.length; i++) {
         o[i] = newArray[i];
     }
     console.log(o);
 
     // Using bubble sort algo to randomize newArray
     var x = piggyBackArray;
-    var n = piggyBackArray.length-1;
+    var n = piggyBackArray.length - 1;
     var swap = true;
     while (swap) {
         swap = false;
@@ -94,6 +100,8 @@ if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse <
     // newArray[1] = "1";
     // newArray[2] = "U"
     // newArray[3] = "t"
+
+    // changing the array to a string to get rid of the commas when displaying variable
     var text = "";
     for (i = 0; i < newArray.length; i++) {
         text += newArray[i];
@@ -103,7 +111,7 @@ if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse <
     var checkMatch = "";
     var a;
 
-    // check for lower case letter
+    // check for lowerCase letter
     if (userAnsewerLowerCase === false) {
         a = 0;
         while (a < lowerCharArray.length) {
@@ -114,9 +122,25 @@ if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse <
                 }
             a++;
         }
+    } else {
+        var checkPassLower;
+        var checkMatchPassLower = "";
+        checkPassLower = "password failed lowercase statement"
+        a = 0;
+        while (a < lowerCharArray.length) {
+            for (i = 0; i < text.length; i++)
+                if (lowerCharArray[a] === text.charAt(i)) {
+                    checkPassLower = "Password Passed Lowercase Check";
+                    checkMatchPassLower += text.charAt(i);
+                }
+            a++;
+        }
+        console.log(checkPassLower);
+        console.log(checkMatchPassLower);
     }
 
-    // check for upper case letter
+
+    // check for upperCase letter
     if (userAnswerUpperCase === false) {
         a = 0;
         while (a < lowerCharArray.length) {
@@ -127,6 +151,21 @@ if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse <
                 }
             a++;
         }
+    } else{
+        var checkPassUpper;
+        var checkMatchPassUpper = "";
+        checkPassUpper = "password failed Uppercase statement"
+        a = 0;
+        while (a < lowerCharArray.length) {
+            for (i = 0; i < text.length; i++)
+                if (lowerCharArray[a].toUpperCase() === text.charAt(i)) {
+                    checkPassUpper = "Password Passed Uppercase Check";
+                    checkMatchPassUpper += text.charAt(i);
+                }
+            a++;
+        }
+        console.log(checkPassUpper);
+        console.log(checkMatchPassUpper);
     }
 
     // check for number
@@ -140,6 +179,21 @@ if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse <
                 }
             a++;
         }
+    } else{
+        var checkPassNumber;
+        var checkMatchPassNumber = "";
+        checkPassNumber = "password failed Number Check"
+        a = 0;
+        while (a < numericArray.length) {
+            for (i = 0; i < text.length; i++)
+                if (numericArray[a] === text.charAt(i)) {
+                    checkPassNumber = "Password Passed Number Check";
+                    checkMatchPassNumber += text.charAt(i);
+                }
+            a++;
+        }
+        console.log(checkPassNumber);
+        console.log(checkMatchPassNumber);
     }
 
     // check for special character
@@ -153,7 +207,23 @@ if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse <
                 }
             a++;
         }
+    } else{
+        var checkPassSpecial;
+        var checkMatchPassSpecial = "";
+        checkPassSpecial = "password failed Special Character Check"
+        a = 0;
+        while (a < specialCharArray.length) {
+            for (i = 0; i < text.length; i++)
+                if (specialCharArray[a] === text.charAt(i)) {
+                    checkPassSpecial = "Password Passed Special Character Check";
+                    checkMatchPassSpecial += text.charAt(i);
+                }
+            a++;
+        }
+        console.log(checkPassSpecial);
+        console.log(checkMatchPassSpecial);
     }
     console.log(check);
     console.log(checkMatch);
+    document.querySelector("#demo").textContent = text;
 }

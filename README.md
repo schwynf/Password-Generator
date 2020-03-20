@@ -1,73 +1,9 @@
 # Password-Generator
-if(userAnsewerLowerCase === true && userAnswerUpperCase === true && userAnsewerNumber === true && userAnswerSpecialChar === true){
-var randomNumber;
-var randomLowerCharArray = [];
-for(i=0;i<lowerCharArray;i++){
-    randomNumber = Math.floor(Math.random() * lowerCharArray.length);
-    randomLowerCharArray[i] = randomNumber;
-}
-var randomNumericArray = [];
-for(i=0;i<numericArray;i++){
-    randomNumber = Math.floor(Math.random() * numericArray.length);
-    randomNumericArray[i] = randomNumber;
-}
-var randomSpecialCharArray = [];
-for(i=0;i<specialCharArray;i++){
-    randomNumber = Math.floor(Math.random() * specialCharArray.length);
-    randomSpecialCharArray[i] = randomNumber;
-}
-var text = [];
-for(i=0;i<userAnswerCharLength.length;i++){
-    text[i]= lowerCharArray[randomNumberArray[i]] + lowerCharArray[randomNumberArray[i]].toUpperCase() + specialCharArray[randomSpecialCharArray[i]] + numericArray[randomNumericArray[i]];
-}
-text.pop();
-var showPassword
-for(i=0;i<text.length;i++){
-    showPassword += text[i];
-}
-document.getElementById("demo").textContent = showPassword;
+--Title--
+Password-Generator
 
-    }
-} else{
-    alert("sorry please follow criteria");
-}
+--description--
+This website probides an application that generates a new password using various characters and character length depending on user input. The website has been tested on the following browsers: [Google Chrome, Fire Fox, Internet Explorer, Microsoft Edge]. All links stay within the website. Majority of the css is linked to Bootstrap so internet acces is required to render content in brower. Feel free to leave a comment negative or positive. I am always looking to improve the website. psss... Check console in inspect mode if you to want check validation of password per user input.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var randomNumber;
-// userAnswerCharLength = Math.floor(Math.random() * userAnswerLength);
-// var randomNumberArray = [];
-// for(i=0;i<lowerCharArray;i++){
-//     randomNumber = Math.floor(Math.random() * lowerCharArray.length);
-//     randomLowerCharArray[i] = randomNumber;
-// }
-// for(i=0;i<numericArray;i++){
-//     randomNumber = Math.floor(Math.random() * numericArray.length);
-//     randomNumericArray[i] = randomNumber;
-// }
-// for(i=0;i<specialCharArray;i++){
-//     randomNumber = Math.floor(Math.random() * specialCharArray.length);
-//     randomSpecialCharArray[i] = randomNumber;
-// }
-// var text = [];
-// for(i=0;i<userAnswerCharLength.length;i++){
-//     text[i]= lowerCharArray[randomNumberArray[i]] + specialCharArray[randomSpecialCharArray[i]] + numericArray[randomNumericArray[i]];
-// }
-// text.pop();
-// var showPassword
-// for(i=0;i<text.length;i++){
-//     showPassword += text[i];
-// }
-// document.getElementById("demo").textContent = showPassword;
+--Author--
+Schwyn Francis
