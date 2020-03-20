@@ -1,11 +1,12 @@
+// setting up 4 arrays using the input criteria from user to make password
 var lowerCharArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-console.log(lowerCharArray[0].toUpperCase());
 var numericArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var specialCharArray = [" ", "!", "\”", "#", "$", "%", "&", "\’", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"];
+console.log(lowerCharArray[0].toUpperCase());
 console.log(specialCharArray[2]);
 
 var userAnswerLength = prompt("how many characters do you want for password? minimun:8 & maximum:128");
-// prompt is a string so I have to parseInt to get data type number
+// prompt is a string so I have to parseInt to get data type "number"
 var userAnswerParse = parseInt(userAnswerLength);
 var userAnswerParseType = typeof userAnswerParse;
 
@@ -21,6 +22,7 @@ if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse <
     var randomNumericArray = [];
     var randomSpecialCharArray = [];
     var newArray = [];
+    // piggybackArray used to randomize order of newArray
     var piggyBackArray = [];
     var x;
     // setting up the newArray length to be equal to userAnswerParse. The while loop will stop when newArray.length is equal to userAnswerParse.
@@ -54,12 +56,22 @@ if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse <
             piggyBackArray.push(randomNumber);
         }
     }
-    console.log(newArray);
-    console.log(piggyBackArray);
+    // piggyBackArray prior to bubble sort--check console
+    var rand = [];
+    for(i = 0; i < piggyBackArray.length; i++){
+        rand[i] = piggyBackArray[i];
+    }
+    console.log(rand);
+    // newArray prior to bubble sort--check console
+    var o = [];
+    for(i = 0; i < newArray.length; i++){
+        o[i] = newArray[i];
+    }
+    console.log(o);
 
     // Using bubble sort algo to randomize newArray
     var x = piggyBackArray;
-    var n = piggyBackArray.length;
+    var n = piggyBackArray.length-1;
     var swap = true;
     while (swap) {
         swap = false;
@@ -71,12 +83,12 @@ if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse <
                 var temp1 = newArray[i];
                 newArray[i] = newArray[i + 1];
                 newArray[i + 1] = temp1;
-                swapp = true;
+                swap = true;
             }
         }
         n--;
     }
-
+    console.log(x);
     // uncomment 1-3 comments below to run check cases. Make sure to press cancel when prompted depending on which case you choose!
     // newArray[0] = "!";
     // newArray[1] = "1";
@@ -87,7 +99,7 @@ if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse <
         text += newArray[i];
     }
     console.log(text);
-    var check = "no pair";
+    var check = "Password has been validated per user requirements. Enjoy!";
     var checkMatch = "";
     var a;
 
@@ -97,7 +109,7 @@ if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse <
         while (a < lowerCharArray.length) {
             for (i = 0; i < text.length; i++)
                 if (lowerCharArray[a] === text.charAt(i)) {
-                    check = "match";
+                    check = "Password Failed";
                     checkMatch += text.charAt(i);
                 }
             a++;
@@ -110,7 +122,7 @@ if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse <
         while (a < lowerCharArray.length) {
             for (i = 0; i < text.length; i++)
                 if (lowerCharArray[a].toUpperCase() === text.charAt(i)) {
-                    check = "match";
+                    check = "Password Failed";
                     checkMatch += text.charAt(i);
                 }
             a++;
@@ -123,7 +135,7 @@ if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse <
         while (a < numericArray.length) {
             for (i = 0; i < text.length; i++)
                 if (numericArray[a] === text.charAt(i)) {
-                    check = "match";
+                    check = "Password Failed";
                     checkMatch += text.charAt(i);
                 }
             a++;
@@ -136,7 +148,7 @@ if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse <
         while (a < specialCharArray.length) {
             for (i = 0; i < text.length; i++)
                 if (specialCharArray[a] === text.charAt(i)) {
-                    check = "match";
+                    check = "Password Failed";
                     checkMatch += text.charAt(i);
                 }
             a++;
