@@ -17,6 +17,13 @@ if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse <
     var userAnswerUpperCase = confirm("Include Upper Case Letters?");
     var userAnsewerNumber = confirm("Include Numbers?");
     var userAnswerSpecialChar = confirm("Include special characters?");
+    while (userAnsewerLowerCase === false && userAnswerUpperCase === false && userAnsewerNumber === false && userAnswerSpecialChar === false){
+        alert("Gota choose one");
+        var userAnsewerLowerCase = confirm("Include Lower Case Letters?");
+        var userAnswerUpperCase = confirm("Include Upper Case Letters?");
+        var userAnsewerNumber = confirm("Include Numbers?");
+        var userAnswerSpecialChar = confirm("Include special characters?");
+    }
     // Useful info for console
     console.log("LowerCase: " + userAnsewerLowerCase);
     console.log("UpperCase: " + userAnswerUpperCase);
@@ -125,7 +132,7 @@ if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse <
     } else {
         var checkPassLower;
         var checkMatchPassLower = "";
-        checkPassLower = "password failed lowercase statement"
+        checkPassLower = "password failed Lowercase Check"
         a = 0;
         while (a < lowerCharArray.length) {
             for (i = 0; i < text.length; i++)
@@ -154,7 +161,7 @@ if (userAnswerParseType === "number" && userAnswerParse > 7 && userAnswerParse <
     } else{
         var checkPassUpper;
         var checkMatchPassUpper = "";
-        checkPassUpper = "password failed Uppercase statement"
+        checkPassUpper = "password failed Uppercase Check"
         a = 0;
         while (a < lowerCharArray.length) {
             for (i = 0; i < text.length; i++)
