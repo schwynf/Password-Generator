@@ -1,5 +1,5 @@
-// document.querySelector("#buttonGen").addEventListener("click", engine());
-// docButtonGen.addEventListener("click", engine());
+document.querySelector("#buttonGen").addEventListener("click", engine);
+document.querySelector("#buttonCopy").addEventListener("click", copyText);
 
 
 // copy text to clipboard function
