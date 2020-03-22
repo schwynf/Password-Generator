@@ -4,7 +4,7 @@ document.querySelector("#buttonCopy").addEventListener("click", copyText);
 
 // copy text to clipboard function
 function copyText() {
-    var copyText = document.getElementById("demo");
+    var copyText = document.getElementById("exampleFormControlTextarea1");
     copyText.select();
     copyText.setSelectionRange(0, 99999)
     document.execCommand("copy");
@@ -251,7 +251,7 @@ function engine() {
         var stop = setInterval(function () {
             if (i < text.length) {
                 textAdder += text.charAt(i);
-                document.querySelector("#demo").value = textAdder;
+                document.querySelector("#exampleFormControlTextarea1").value = textAdder;
                 i++
 
             } else { clearInterval(stop); }
